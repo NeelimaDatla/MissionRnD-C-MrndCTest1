@@ -31,22 +31,23 @@ char * concat_4strings(char *s1, char *s2, char *s3, char *s4){
 	//Return the new string created.
 	int arr[26];
 	char str[100];
+	int val = 0;
 	if (s1 == NULL && s2 == NULL && s3 == NULL && s4 == NULL)
 		return NULL;
 	for (int i = 0; s1[i] != '\0'; i++){
-		int val = s1[i] - 65;
+		val = s1[i] - 65;
 		arr[val] = 1;
 	}
 	for (int i = 0; s2[i] != '\0'; i++){
-		int val = s2[i] - 65;
+		 val = s2[i] - 65;
 		arr[val] = 1;
 	}
 	for (int i = 0; s3[i] != '\0'; i++){
-		int val = s3[i] - 65;
+		val = s3[i] - 65;
 		arr[val] = 1;
 	}
 	for (int i = 0; s4[i] != '\0'; i++){
-		int val = s4[i] - 65;
+		val = s4[i] - 65;
 		arr[val] = 1;
 	}
 	for (int i = 0; i < 26; i++){
