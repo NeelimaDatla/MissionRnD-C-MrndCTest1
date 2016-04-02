@@ -51,7 +51,7 @@ char * concat_4strings(char *s1, char *s2, char *s3, char *s4){
 	}
 	for (int i = 0; i < 26; i++){
 		if (i == 1)
-			str[i] = arr[i];
+			str[i] = arr[i] + '65';
 	}
 	return str;
 }
