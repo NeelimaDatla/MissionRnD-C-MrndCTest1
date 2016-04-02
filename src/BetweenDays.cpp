@@ -28,7 +28,58 @@ struct node{
 	struct node *next;
 };
 
-
+int days(char[], char[]);
 int between_days(struct node *date1head, struct node *date2head){
-	return -1;
+	struct node *d1 = date1head;
+	struct node *d2 = date2head;
+	char str1[8];
+	char str2[8];
+	int i = 0;
+	if (date1head == NULL || date2head == NULL)
+		return -1;
+	while (d1->next!= NULL){
+		str1[i] = (d1->data + '0');
+		i++;
+		d1 = d1->next;
+	}
+	i = 0;
+	while (d2->next != NULL){
+		str2[i] = (d2->data + '0');
+		i++;
+		d2 = d2->next;
+	}
+	int d = days(str1, str2);
+	return d - 1;
+}
+
+int days(char dob1[8], char dob2[8]) {
+	int year1 = ((dob1[4] - 48) * 1000) + ((dob1[5] - 48) * 100) + ((dob1[6] - 48) * 10) + (dob1[7] - 48);
+	int year2 = ((dob2[4] - 48) * 1000) + ((dob2[5] - 48) * 100) + ((dob2[6] - 48) * 10) + (dob2[7] - 48);
+	int month1 = ((dob1[2] - 48) * 10) + (dob1[3] - 48);
+	int month2 = ((dob2[2] - 48) * 10) + (dob2[3] - 48);
+	int day1 = ((dob1[0] - 48) * 10) + (dob1[1] - 48);
+	int day2 = ((dob2[0] - 48) * 10) + (dob2[1] - 48);
+	int k = abs(year1 - year2);
+	int days = k * 365;
+	for (int j = month1; j < month2; j++){
+		if (j == 2)
+			days = days + 28;
+		else if (j == 8)
+			days = days + 30;
+		else if (j <= 7){
+			if (j % 2 == 0)
+				days = days + 30;
+			else
+				days = days + 31;
+		}
+		else{
+			if (j % 2 == 0)
+				days = days + 31;
+			else
+				days = days + 30;
+		}
+	}
+	int k3 = abs(day1 - day2);
+	days = days + k3;
+	return days;
 }
